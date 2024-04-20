@@ -1,0 +1,25 @@
+<style>
+.navbar-brand {
+  float: right;
+}
+</style>
+
+{% extends "base.html" %}
+
+{% block title %} Home Page {% endblock %}
+{% block content %}
+{% if current_user.is_authenticated %}
+  <a class="navbar-brand" href="/logout">{{ current_user.name }}</a>
+{% endif %}
+<h1> Test </h1>
+{% for elem in user %}
+<div>
+    <h2>{{elem.id}}</h2>
+    <h2>{{elem.name}}</h2>
+    <h2>{{elem.about}}</h2>
+    <h2>{{elem.user_id}}</h2>
+    <h2>{{elem.price}}</h2>
+    <img src="{{elem.picture}}" alt="Here must be image...">
+</div>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,108 @@
+{% extends  "base.html"%}
+
+{% block content %}
+<h1>Create Item</h1>
+<form action="" method="post" enctype="multipart/form-data">
+    {{form.hidden_tag()}}
+    <p>
+        {{ form.item_name.label }}<br>
+        {{ form.item_name(class="form-control") }}<br>
+        {% for error in form.item_name.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+    <p>
+        {{form.about.label}}<br>
+        {{ form.about(class="form-control")}} <br>
+    </p>
+     <p>
+        {{form.type.label}} <br>
+        {%for elem in form.info%}
+        <input class="form-check-input" type="radio" name="exampleRadios" id="{{elem.id}}"
+               value="{{elem.id}}" checked>
+         <label class="form-check-label" for="{{elem.id}}">
+        {{elem.title}}
+        </label>
+        {%endfor%}
+    </p>
+     <p>
+        {{ form.price.label }}<br>
+        {{ form.price(class="form-control") }}<br>
+        {% for error in form.price.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+    <p>
+        {{form.photo.label}}<br>
+        {{form.photo(type="file",class="form-control")}}<br>
+        {% for error in form.photo.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+    <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
+</form>
+{% endblock %}
+
+ <p>
+        {{ form.price.label }}<br>
+        {{ form.price(class="form-control") }}<br>
+        {% for error in form.price.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+
+
+        {{form.photo.label}}<br>
+        {{form.photo(type="file",class="form-control")}}<br>
+        {% for error in form.photo.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+
+ <p>
+        {{form.type.label}} <br>
+        {%for elem in form.info%}
+        <input class="form-check-input" type="radio" name="exampleRadios" id="{{elem.id}}" value="{{elem.id}}" checked>
+  <label class="form-check-label" for="{{elem.id}}">
+    {{elem.title}}}
+  </label>
+        {%endfor%}
+    </p>
+
+      #  item = Items()
+       # item.name = form.item_name.data
+       # item.about = form.about.data
+        #item.type_id = request.value
+        #item.price = form.price
+        #item.picture = form.photo.read()
+        #item.creator_id = 1
+        #db_sess.add(item)
+        #db_sess.commit()
+        # request.files
+        return redirect("/")
+        #  item = Items(name=form.item_name.data,
+        #               type_id=1,
+        #               about=form.about.data,
+        #               price=form.price.data,
+        #               picture=form.photo.data.read(),
+        #              creator_id=1, )
+        #  current_user.items.append(creator)
+        # item.type_id = form.type
+        # db_sess.merge(current_user)
+        # db_sess.add(item)
+        # db_sess.commit()
+{%if file_url %}
+    <div class="mt-5">
+        <img scr="{{ file_url }}" style="width">
+    </div>
+    {%endif%}

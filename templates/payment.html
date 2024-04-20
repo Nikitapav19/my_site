@@ -1,0 +1,58 @@
+<style>
+    body {
+        background-image: url('{{ url_for('static', filename='images/background.jpg') }}');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        font-family: Arial, sans-serif;
+        color: #333;
+    }
+
+    form {
+        max-width: 400px;
+        margin: 50px auto;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 10px;
+    }
+
+    h1, h2 {
+        text-align: center;
+    }
+
+    input[type='text'] {
+        width: 100%;
+        padding: 10px;
+        margin: 5px 0;
+        box-sizing: border-box;
+    }
+
+    input[type='submit'] {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        box-sizing: border-box;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+</style>
+
+<body>
+    <form method='POST' action='https://demo.paykeeper.ru/create/'>
+        <h2>Сумма оплаты:
+            <input type='text' name='sum' value='{{ total_sum }}' readonly />
+        </h2>
+        <h2>Номер заказа:
+            <input type='text' name='orderid' value='{{ order_id }}' readonly />
+        </h2>
+        <h2>Название услуги:
+            <input type='text' name='service_name' value='Покупка' readonly />
+        </h2>
+        <h1>
+            <input type='submit' autofocus value='Перейти к оплате' />
+        </h1>
+    </form>
+</body>

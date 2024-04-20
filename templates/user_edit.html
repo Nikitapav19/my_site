@@ -1,0 +1,117 @@
+<style>
+    .product-wrapper {
+        display: block;
+        width: 100%;
+        float: left;
+        transition: width .2s;
+    }
+    @media only screen and (min-width: 450px) {
+        .product-wrapper {
+            width: 50%;
+        }
+    }
+
+    @media only screen and (min-width: 768px) {
+        .product-wrapper {
+            width: 33.333%;
+        }
+    }
+
+    @media only screen and (min-width: 1000px) {
+        .product-wrapper {
+            width: 20%;
+        }
+    }
+    .product {
+        display: block;
+        /* border: 1px solid #b5e9a7; */
+        border-radius: 3px;
+        position: relative;
+        background: #fff;
+        margin: 0 20px 20px 20px 0;
+        text-decoration: none;
+        color: #474747;
+        z-index: 0;
+        height: 420px;
+    }
+    .products {
+        list-style: none;
+        margin: 0 -20px 0 0 0;
+        padding: 0;
+    }
+    .image {
+            margin-bottom: 10px;
+        }
+        .image img {
+            border-radius: 20px;
+        }
+        .rating {
+            margin-bottom: 0;
+            padding-left: 0;
+            list-style-type: none;
+            color: rgb(228, 163, 22);
+        }
+        .rating li {
+            display: inline-block;
+        }
+        .info h3 {
+            font-size: 19px;
+            font-weight: normal;
+            margin-bottom: 0;
+            font-family: system-ui;
+        }
+        .info small {
+            font-weight: normal;
+            font-family: system-ui;
+            color: rgba(0, 0, 0, 0.603);
+        }
+        .info-price {
+            font-size: 26px;
+            font-weight: 600;
+            font-family: system-ui;
+        }
+        .info-price button{
+            font-size: 20px;
+            border-radius: 5px;
+            border: none;
+            width: 40px;
+            color: aliceblue;
+            font-weight: 600;
+            background-color: rgb(194, 168, 129);
+            transition: 0.5s;
+        }
+        button:hover {
+            background-color: rgb(163, 122, 60);
+    }
+    .image img {
+  width: 275px;
+  height: 250px;
+}
+    </style>
+{% extends "base.html" %}
+    {% block content %}
+    <script src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <ul class="products clearfix">
+        <h1><strong>Editing</strong></h1>
+        {% for elem in user %}
+        <li class="product-wrapper">
+            <div class="product">
+                <div class="image">
+                    <img src="{{elem.picture }}" alt="not_found">
+                </div>
+                <div class="info">
+                    <h3>{{elem.name}}</h3>
+                    <small>{{elem.about }}</small>
+                </div>
+                <div class="info-price">
+                    <span class="price">{{elem.price}}<small>₽</small></span>
+                    <a href="/edit/delete/{{elem.article}}">
+                    <button style="font-size:25px; background-color:red; border-radius:25px; width:105px;">Удалить</button>
+                    </a>
+
+                </div>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+    {% endblock %}

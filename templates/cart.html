@@ -1,0 +1,95 @@
+<style>
+      body {
+    background-image: url('{{ url_for('static', filename='images/background.jpg') }}');
+    background-size: 1920px 1080px;
+    background-repeat: no-repeat;
+    background-position: center -100px;
+}
+    .cart {
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    img {
+    width: 275px;
+    height 225px:
+    }
+
+    h1 {
+        text-align: center;
+        color: #333;
+    }
+
+    table.table-bordered {
+        margin: auto;
+        width: 80%;
+        text-align: center;
+        border-collapse: collapse;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    table.table-bordered th, table.table-bordered td {
+        border: 1px solid #ddd;
+        padding: 12px;
+    }
+
+    button {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        display: inline-block;
+        margin-top: 10px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+</style>
+
+{% extends "base.html" %}
+
+{% block title %} Home Page {% endblock %}
+
+{% block content %}
+<div class="cart">
+    <h1>Корзина</h1>
+    <table class="table-bordered">
+        <thead>
+            <tr>
+                <th scope="row"><h3>Предмет</h3></th>
+                <th><h3>Стоимость товара</h3></th>
+                <th><h3>Изображение</h3></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in cart %}
+            <tr>
+                <td><h3>{{ item.name }}</h3></td>
+                <td><h3>{{ item.price }}₽</h3></td>
+                <td>
+                    <img src="{{item.picture}}" alt="not_found"><br>
+                    <a href="/cart/{{item.article}}/remove">
+                        <button>Убрать</button>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="/cart/clear">
+        <button>Очистить список</button>
+    </a>
+    <a href="/payment">
+        <button>Оформить заказ</button>
+    </a>
+
+
+    <h2>Итоговая стоимость: {{ final_total }}₽</h2>
+</div>
+{% endblock %}

@@ -1,0 +1,27 @@
+<style>
+  body {
+    background-image: url('{{ url_for('static', filename='images/background.jpg') }}');
+    background-size: 1920px 1080px;
+    background-repeat: no-repeat;
+    background-position: center -100px;
+}
+        img {
+    width: 275px;
+    height 225px:
+    }
+</style>
+
+<body>
+{% extends "base.html" %}
+{% block content %}
+<div style="text-align: center; padding: 20px;">
+    <h1 style="font-size: 30px; color: #333;"><strong>{{ item.name }}</strong></h1>
+    <p style="font-size: 20px; color: #666;">{{ item.about }}</p>
+    <img src="{{ item.picture }}" alt="Product Image" style="max-width: 100%; margin-top: 20px;">
+    <h3 style="font-size: 24px; color: #333; margin-top: 20px;">Стоимость: {{ item.price }}₽</h3>
+    <a href="/{{ item.article }}/add_to_cart">
+        <button style="font-size: 20px; background-color: #007bff; color: #fff; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin-top: 20px;">Добавить в корзину</button>
+    </a>
+</div>
+{% endblock %}
+</body>

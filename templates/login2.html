@@ -1,0 +1,45 @@
+<style>
+    body {
+    background-image: url('{{ url_for('static', filename='images/background.jpg') }}');
+    background-size: 1920px 1080px;
+    background-repeat: no-repeat;
+    background-position: center -100px;
+}
+</style>
+
+{% extends "base.html" %}
+<body>
+{% block content %}
+<h1>Авторизация</h1>
+<form action="" method="post" novalidate>
+    {{ form.hidden_tag() }}
+    <p>
+        {{ form.email.label }}<br>
+        {{ form.email(class="form-control", type="email") }}<br>
+        {% for error in form.email.errors %}
+    <div class="alert alert-danger" role="alert">
+        {{ error }}
+    </div>
+    {% endfor %}
+    </p>
+    <p>
+        {{ form.password.label }}<br>
+        {{ form.password(class="form-control", type="password") }}<br>
+        {% for error in form.password.errors %}
+    <div class="alert alert-danger" role="alert">
+        {{ error }}
+    </div>
+    {% endfor %}
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <h6> {{message}} </h6>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    </p>
+    <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
+</form>
+</body>
+
+{% endblock %}

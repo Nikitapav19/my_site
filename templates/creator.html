@@ -1,0 +1,55 @@
+<style>
+      body {
+    background-image: url('{{ url_for('static', filename='images/background.jpg') }}');
+    background-size: 1920px 1080px;
+    background-repeat: no-repeat;
+    background-position: center -100px;
+}
+</style>
+
+<body>
+{% extends  "base.html"%}
+
+{% block content %}
+<h1>Создать вещь</h1>
+<form action="" method="post" enctype="multipart/form-data">
+    {{form.hidden_tag()}}
+    <p>
+        {{ form.item_name.label }}<br>
+        {{ form.item_name(class="form-control") }}<br>
+        {% for error in form.item_name.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+    <p>
+        {{form.about.label}}<br>
+        {{ form.about(class="form-control")}} <br>
+    </p>
+    <p>
+        {{ form.price.label }}<br>
+        {{ form.price(type="number",class="form-control", min=100, max=1000000) }}<br>
+        {% for error in form.price.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+    <div class="row justify-content-center">
+        <div class="col-auto">
+             {{form.photo.label}}<br>
+            {{form.photo(type="file",class="form-control")}}<br>
+             {% for error in form.photo.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+            {% endfor %}
+        </div>
+    </div>
+
+
+    <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
+</form>
+{% endblock %}
+</body>
